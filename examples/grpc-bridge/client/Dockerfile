@@ -15,4 +15,7 @@ RUN chmod a+x /client/grpc-kv-client.py
 
 # http://bigdatums.net/2017/11/07/how-to-keep-docker-containers-running/
 # Call docker exec /client/grpc.py set | get
-CMD tail -f /dev/null
+CMD sleep 20 &&\
+ /client/grpc-kv-client.py set foo bar &&\
+ /client/grpc-kv-client.py set foo bar &&\
+ tail -f /dev/null

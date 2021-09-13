@@ -46,5 +46,13 @@ services:
     ports:
     - "9911:9911"
 
+  netshoot:
+    image: nicolaka/netshoot
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    network_mode: "service:grpc-client-proxy"
+    command: termshark -i eth0 -f "port 8811"
+
 networks:
   envoymesh: {}
